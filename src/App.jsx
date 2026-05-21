@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { usePDF } from "react-to-pdf";
 import "./App.css";
 
 function App() {
@@ -17,8 +16,6 @@ function App() {
     skills: "",
   });
 
-  const { toPDF, targetRef } = usePDF({ filename: "My_Awesome_CV.pdf" });
-
   function handleChange(e) {
     setCvData({ ...cvData, [e.target.name]: e.target.value });
   }
@@ -31,7 +28,6 @@ function App() {
 
       <main className="builder-layout">
         {/* ===== LEFT: FORM ===== */}
-
         <section className="form-section">
           <h2>Personal Info</h2>
           <label>Full name</label>
@@ -129,13 +125,16 @@ function App() {
         <section className="preview-section">
           <div className="preview-controls">
             <span className="preview-label-text">LIVE PREVIEW</span>
-            <button onClick={() => toPDF()} className="download-btn">
+
+            {/* window.print() tells the browser to print the page
+                @media print in CSS hides everything except the CV
+                Result: perfect full-width A4 PDF every time */}
+            <button onClick={() => window.print()} className="download-btn">
               Download PDF
             </button>
           </div>
 
-          <div ref={targetRef} className="cv-document">
-            {/* CV Top Header Bar */}
+          <div className="cv-document">
             <div className="cv-top">
               <h3>{cvData.name || "Your Name"}</h3>
               <p>{cvData.jobTitle || "Your Job Title"}</p>
@@ -145,7 +144,6 @@ function App() {
               </div>
             </div>
 
-            {/* Summary */}
             {cvData.summary && (
               <div className="cv-section">
                 <h4>About Me</h4>
@@ -153,7 +151,6 @@ function App() {
               </div>
             )}
 
-            {/* Experience */}
             {cvData.company && (
               <div className="cv-section">
                 <h4>Work Experience</h4>
@@ -167,7 +164,6 @@ function App() {
               </div>
             )}
 
-            {/* Education */}
             {cvData.school && (
               <div className="cv-section">
                 <h4>Education</h4>
@@ -181,7 +177,6 @@ function App() {
               </div>
             )}
 
-            {/* Skills */}
             {cvData.skills && (
               <div className="cv-section">
                 <h4>Skills</h4>

@@ -148,6 +148,8 @@ hr {
   font-size: 14px;
   color: #444;
   line-height: 1.7;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 /* === CV ENTRY (experience / education) === */
@@ -236,4 +238,35 @@ hr {
 
 .cv-document {
   background-color: #ffffff; /* Ensures the PDF background isn't transparent */
+}
+
+@media print {
+  body {
+    background-color: #ffffff;
+    padding: 0;
+    margin: 0;
+  }
+
+  header,
+  .form-section,
+  .preview-controls {
+    display: none !important;
+  }
+
+  .builder-layout {
+    display: block;
+    margin: 0;
+    gap: 0;
+  }
+
+  .preview-section {
+    box-shadow: none;
+    border-radius: 0;
+    width: 100%;
+    overflow: visible;
+  }
+
+  .cv-document {
+    width: 100%;
+  }
 }
