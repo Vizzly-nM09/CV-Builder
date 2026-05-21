@@ -239,7 +239,76 @@ hr {
 .cv-document {
   background-color: #ffffff; /* Ensures the PDF background isn't transparent */
 }
+/* all your existing styles... */
 
+/* === CLEAR BUTTON === */
+.clear-btn {
+  /* ← was written as .clean-btn, also a typo! */
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #e94560;
+  background: transparent;
+  color: #e94560;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 8px;
+}
+
+.clear-btn:hover {
+  background-color: #e94560;
+  color: #ffffff;
+}
+
+/* === ENTRY BLOCK === */
+.entry-block {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid #2a2a4a;
+  border-radius: 8px;
+  position: relative;
+}
+
+/* === ADD BUTTON === */
+.add-btn {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px dashed #e94560;
+  background: transparent;
+  color: #e94560;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.add-btn:hover {
+  background-color: #e94560;
+  color: #ffffff;
+}
+
+/* === REMOVE BUTTON === */
+.remove-btn {
+  align-self: flex-end;
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid #555;
+  background: transparent;
+  color: #aaaaaa;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.remove-btn:hover {
+  border-color: #e94560;
+  color: #e94560;
+}
+
+/* === PRINT — keep this at very bottom, nothing else goes inside === */
 @media print {
   body {
     background-color: #ffffff;
@@ -268,23 +337,5 @@ hr {
 
   .cv-document {
     width: 100%;
-  }
-
-  .clean-btn {
-    width: 100%;
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid #e94560;
-    background: transparent;
-    color: #e94560;
-    font-size: 13px;
-    cursor: pointer;
-    transition: all 0.2s;
-    margin-top: 8px;
-  }
-
-  .clear-btn:hover {
-    background-color: #e94560;
-    color: #ffffff;
   }
 }
