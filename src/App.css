@@ -269,4 +269,22 @@ hr {
   .cv-document {
     width: 100%;
   }
+
+  .clean-btn {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #e94560;
+    background: transparent;
+    color: #e94560;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 8px;
+  }
+
+  .clear-btn:hover {
+    background-color: #e94560;
+    color: #ffffff;
+  }
 }

@@ -1,20 +1,35 @@
-import { useState } from "react";
+import { useState, useEffect } from "react"; // ← add useEffect here
 import "./App.css";
 
 function App() {
-  const [cvData, setCvData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    summary: "",
-    jobTitle: "",
-    company: "",
-    workYear: "",
-    school: "",
-    degree: "",
-    eduYear: "",
-    skills: "",
+  // ← CHANGED: instead of empty strings, we check localStorage first
+  // JSON.parse converts the saved text back into a JavaScript object
+  // If nothing is saved yet, use the empty default object
+  const [cvData, setCvData] = useState(() => {
+    const saved = localStorage.getItem("cvData");
+    return saved
+      ? JSON.parse(saved)
+      : {
+          name: "",
+          email: "",
+          phone: "",
+          summary: "",
+          jobTitle: "",
+          company: "",
+          workYear: "",
+          school: "",
+          degree: "",
+          eduYear: "",
+          skills: "",
+        };
   });
+
+  // ← NEW: useEffect watches cvData for any change
+  // Every time cvData changes, it saves to localStorage automatically
+  // JSON.stringify converts the object into text for storage
+  useEffect(() => {
+    localStorage.setItem("cvData", JSON.stringify(cvData));
+  }, [cvData]); // ← [cvData] means "run this effect when cvData changes"
 
   function handleChange(e) {
     setCvData({ ...cvData, [e.target.name]: e.target.value });
@@ -119,16 +134,37 @@ function App() {
             onChange={handleChange}
             placeholder="e.g. React, CSS, Figma"
           />
+
+          <hr />
+
+          {/* ← NEW: Clear button so user can reset the form */}
+          <button
+            className="clear-btn"
+            onClick={() => {
+              localStorage.removeItem("cvData");
+              setCvData({
+                name: "",
+                email: "",
+                phone: "",
+                summary: "",
+                jobTitle: "",
+                company: "",
+                workYear: "",
+                school: "",
+                degree: "",
+                eduYear: "",
+                skills: "",
+              });
+            }}
+          >
+            Clear All & Reset
+          </button>
         </section>
 
         {/* ===== RIGHT: PREVIEW ===== */}
         <section className="preview-section">
           <div className="preview-controls">
             <span className="preview-label-text">LIVE PREVIEW</span>
-
-            {/* window.print() tells the browser to print the page
-                @media print in CSS hides everything except the CV
-                Result: perfect full-width A4 PDF every time */}
             <button onClick={() => window.print()} className="download-btn">
               Download PDF
             </button>
