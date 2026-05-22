@@ -1,5 +1,9 @@
 import { useState, useEffect } from "react";
 import "./App.css";
+import TemplateATS from "./components/templates/TemplateATS";
+import TemplateModern from "./components/templates/TemplateModern";
+import TemplateMinimal from "./components/templates/TemplateMinimal";
+import TemplateSelector from "./components/TemplateSelector";
 
 function App() {
   const [cvData, setCvData] = useState(() => {
@@ -7,38 +11,39 @@ function App() {
     return saved
       ? JSON.parse(saved)
       : {
-          // Personal info — same as before
           name: "",
           email: "",
           phone: "",
           summary: "",
           skills: "",
-
-          // 💡 NEW: arrays of objects instead of flat fields
           experiences: [{ jobTitle: "", company: "", workYear: "" }],
           educations: [{ degree: "", school: "", eduYear: "" }],
         };
+  });
+
+  const [selectedTemplate, setSeletcedTemplate] = useState(() => {
+    const saved = localStorage.getItem("selectedTemplate");
+    return saved || "modern";
   });
 
   useEffect(() => {
     localStorage.setItem("cvData", JSON.stringify(cvData));
   }, [cvData]);
 
-  // Same as before — handles personal info fields
+  useEffect(() => {
+    localStorage.setItem("selectedTemplate", selectedTemplate);
+  }, [selectedTemplate]);
+
   function handleChange(e) {
     setCvData({ ...cvData, [e.target.name]: e.target.value });
   }
 
-  // 💡 NEW: handles changes inside an experience entry
-  // index = which job (0, 1, 2...)
-  // e.target.name = which field (jobTitle, company, workYear)
   function handleExpChange(index, e) {
-    const updated = [...cvData.experiences]; // copy the array
-    updated[index][e.target.name] = e.target.value; // update that one field
+    const updated = [...cvData.experiences];
+    updated[index][e.target.name] = e.target.value;
     setCvData({ ...cvData, experiences: updated });
   }
 
-  // 💡 NEW: adds a new empty experience entry
   function addExperience() {
     setCvData({
       ...cvData,
@@ -49,14 +54,11 @@ function App() {
     });
   }
 
-  // 💡 NEW: removes experience at a specific index
-  // filter() keeps everything EXCEPT the one at this index
   function removeExperience(index) {
-    const updated = cvData.experiences.filter((_, i) => i !== index);
+    const updated = cvData.experience.filter((_, i) => i !== index);
     setCvData({ ...cvData, experiences: updated });
   }
 
-  // 💡 Same pattern repeated for education
   function handleEduChange(index, e) {
     const updated = [...cvData.educations];
     updated[index][e.target.name] = e.target.value;
@@ -78,29 +80,38 @@ function App() {
     setCvData({ ...cvData, educations: updated });
   }
 
+  function renderTemplate() {
+    switch (selectedTemplate) {
+      case "ats":
+        return <TemplateATS cvData={cvData} />;
+      case "minimal":
+        return <TemplateMinimal cvData={cvData} />;
+      case "modern":
+      default:
+        return <TemplateModern cvData={cvData} />;
+    }
+  }
+
   return (
     <div className="app-container">
-      <header>
-        <h1>My Awesome CV Builder</h1>
-      </header>
+      <header>My CV</header>
 
       <main className="builder-layout">
-        {/* ===== LEFT: FORM ===== */}
         <section className="form-section">
-          <h2>Personal Info</h2>
-          <label>Full name</label>
+          <h2>Biodata</h2>
+          <label>Full Name</label>
           <input
             name="name"
             value={cvData.name}
             onChange={handleChange}
-            placeholder="Your full name"
+            placeholder="e.g. John Doe"
           />
           <label>Email</label>
           <input
             name="email"
             value={cvData.email}
             onChange={handleChange}
-            placeholder="e.g. your@email.com"
+            placeholder="e.g. john.doe@example.com"
           />
           <label>Phone</label>
           <input
@@ -114,23 +125,19 @@ function App() {
             name="summary"
             value={cvData.summary}
             onChange={handleChange}
-            placeholder="Tell us about yourself..."
+            placeholder="Tell us about yourself"
           />
           <hr />
 
-          {/* 💡 NEW: loop through experiences array
-              each exp = one job entry
-              index = its position (0, 1, 2...) */}
           <h2>Work Experience</h2>
           {cvData.experiences.map((exp, index) => (
             <div key={index} className="entry-block">
-              {/* Only show Remove button if there's more than 1 entry */}
               {cvData.experiences.length > 1 && (
                 <button
                   className="remove-btn"
                   onClick={() => removeExperience(index)}
                 >
-                  ✕ Remove
+                  X Remove
                 </button>
               )}
 
@@ -139,32 +146,29 @@ function App() {
                 name="jobTitle"
                 value={exp.jobTitle}
                 onChange={(e) => handleExpChange(index, e)}
-                placeholder="e.g. Frontend Developer"
+                placeholder="e.g. Software Engineer"
               />
               <label>Company</label>
               <input
                 name="company"
                 value={exp.company}
                 onChange={(e) => handleExpChange(index, e)}
-                placeholder="e.g. UIB"
+                placeholder="e.g. Tech Corp"
               />
-              <label>Year</label>
+              <label>Years</label>
               <input
                 name="workYear"
                 value={exp.workYear}
                 onChange={(e) => handleExpChange(index, e)}
-                placeholder="e.g. 2023 - Present"
+                placeholder="e.g. 2020 - 2023"
               />
             </div>
           ))}
-
-          {/* Add button appends a new empty entry */}
           <button className="add-btn" onClick={addExperience}>
             + Add Experience
           </button>
           <hr />
 
-          {/* 💡 Same pattern for education */}
           <h2>Education</h2>
           {cvData.educations.map((edu, index) => (
             <div key={index} className="entry-block">
@@ -173,46 +177,45 @@ function App() {
                   className="remove-btn"
                   onClick={() => removeEducation(index)}
                 >
-                  ✕ Remove
+                  X Remove
                 </button>
               )}
 
-              <label>School / University</label>
+              <label>School/University</label>
               <input
                 name="school"
                 value={edu.school}
                 onChange={(e) => handleEduChange(index, e)}
-                placeholder="e.g. Universitas Internasional Batam"
+                placeholder="e.g. Your University/School"
               />
               <label>Degree</label>
               <input
                 name="degree"
                 value={edu.degree}
                 onChange={(e) => handleEduChange(index, e)}
-                placeholder="e.g. S1 Informatika"
+                placeholder="e.g. Bachelor of Science in Computer Science"
               />
-              <label>Year</label>
+              <label>Years</label>
               <input
                 name="eduYear"
                 value={edu.eduYear}
                 onChange={(e) => handleEduChange(index, e)}
-                placeholder="e.g. 2021 - 2025"
+                placeholder="e.g. 2016 - 2020"
               />
             </div>
           ))}
-
           <button className="add-btn" onClick={addEducation}>
             + Add Education
           </button>
           <hr />
 
           <h2>Skills</h2>
-          <label>Skills (separate with comma)</label>
+          <label>List your skills separated by commas</label>
           <input
             name="skills"
             value={cvData.skills}
             onChange={handleChange}
-            placeholder="e.g. React, CSS, Figma"
+            placeholder="e.g. Figma, Excel, JavaScript"
           />
 
           <hr />
@@ -220,14 +223,15 @@ function App() {
             className="clear-btn"
             onClick={() => {
               localStorage.removeItem("cvData");
+              localStorage.removeItem("selectedTemplate");
               setCvData({
                 name: "",
                 email: "",
                 phone: "",
                 summary: "",
-                skills: "",
                 experiences: [{ jobTitle: "", company: "", workYear: "" }],
-                educations: [{ degree: "", school: "", eduYear: "" }],
+                educations: [{ school: "", degree: "", eduYear: "" }],
+                skills: "",
               });
             }}
           >
@@ -235,92 +239,19 @@ function App() {
           </button>
         </section>
 
-        {/* ===== RIGHT: PREVIEW ===== */}
         <section className="preview-section">
           <div className="preview-controls">
-            <span className="preview-label-text">LIVE PREVIEW</span>
+            <span className="preview-label-text">Template Selector</span>
             <button onClick={() => window.print()} className="download-btn">
               Download PDF
             </button>
           </div>
 
-          <div className="cv-document">
-            <div className="cv-top">
-              <h3>{cvData.name || "Your Name"}</h3>
-              {/* Show first job title in header */}
-              <p>{cvData.experiences[0]?.jobTitle || "Your Job Title"}</p>
-              <div className="cv-contacts">
-                {cvData.email && <span>✉ {cvData.email}</span>}
-                {cvData.phone && <span>📞 {cvData.phone}</span>}
-              </div>
-            </div>
-
-            {cvData.summary && (
-              <div className="cv-section">
-                <h4>About Me</h4>
-                <p>{cvData.summary}</p>
-              </div>
-            )}
-
-            {/* 💡 NEW: loop through ALL experiences for preview */}
-            {cvData.experiences.some((exp) => exp.company) && (
-              <div className="cv-section">
-                <h4>Work Experience</h4>
-                {cvData.experiences.map(
-                  (exp, index) =>
-                    exp.company && (
-                      <div
-                        key={index}
-                        className="cv-entry"
-                        style={{ marginBottom: "10px" }}
-                      >
-                        <div className="cv-entry-left">
-                          <p className="cv-role">{exp.jobTitle}</p>
-                          <p className="cv-sub">{exp.company}</p>
-                        </div>
-                        <span className="cv-year-badge">{exp.workYear}</span>
-                      </div>
-                    ),
-                )}
-              </div>
-            )}
-
-            {/* 💡 Same for education */}
-            {cvData.educations.some((edu) => edu.school) && (
-              <div className="cv-section">
-                <h4>Education</h4>
-                {cvData.educations.map(
-                  (edu, index) =>
-                    edu.school && (
-                      <div
-                        key={index}
-                        className="cv-entry"
-                        style={{ marginBottom: "10px" }}
-                      >
-                        <div className="cv-entry-left">
-                          <p className="cv-role">{edu.degree}</p>
-                          <p className="cv-sub">{edu.school}</p>
-                        </div>
-                        <span className="cv-year-badge">{edu.eduYear}</span>
-                      </div>
-                    ),
-                )}
-              </div>
-            )}
-
-            {cvData.skills && (
-              <div className="cv-section">
-                <h4>Skills</h4>
-                <div className="skills-list">
-                  {cvData.skills.split(",").map((skill, index) => (
-                    <span key={index} className="skill-tag">
-                      {skill.trim()}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
+          <TemplateSelector
+            selectedTemplate={selectedTemplate}
+            onTemplateChange={setSeletcedTemplate}
+          />
+          <div className="cv-document">{renderTemplate()}</div>
         </section>
       </main>
     </div>
