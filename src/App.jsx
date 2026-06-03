@@ -1,84 +1,24 @@
-import { useState, useEffect } from "react";
 import "./App.css";
+import { useCVData } from "./hooks/useCVData";
 import TemplateATS from "./components/templates/TemplateATS";
 import TemplateModern from "./components/templates/TemplateModern";
 import TemplateMinimal from "./components/templates/TemplateMinimal";
 import TemplateSelector from "./components/TemplateSelector";
 
 function App() {
-  const [cvData, setCvData] = useState(() => {
-    const saved = localStorage.getItem("cvData");
-    return saved
-      ? JSON.parse(saved)
-      : {
-          name: "",
-          email: "",
-          phone: "",
-          summary: "",
-          skills: "",
-          experiences: [{ jobTitle: "", company: "", workYear: "" }],
-          educations: [{ degree: "", school: "", eduYear: "" }],
-        };
-  });
-
-  const [selectedTemplate, setSeletcedTemplate] = useState(() => {
-    const saved = localStorage.getItem("selectedTemplate");
-    return saved || "modern";
-  });
-
-  useEffect(() => {
-    localStorage.setItem("cvData", JSON.stringify(cvData));
-  }, [cvData]);
-
-  useEffect(() => {
-    localStorage.setItem("selectedTemplate", selectedTemplate);
-  }, [selectedTemplate]);
-
-  function handleChange(e) {
-    setCvData({ ...cvData, [e.target.name]: e.target.value });
-  }
-
-  function handleExpChange(index, e) {
-    const updated = [...cvData.experiences];
-    updated[index][e.target.name] = e.target.value;
-    setCvData({ ...cvData, experiences: updated });
-  }
-
-  function addExperience() {
-    setCvData({
-      ...cvData,
-      experiences: [
-        ...cvData.experiences,
-        { jobTitle: "", company: "", workYear: "" },
-      ],
-    });
-  }
-
-  function removeExperience(index) {
-    const updated = cvData.experience.filter((_, i) => i !== index);
-    setCvData({ ...cvData, experiences: updated });
-  }
-
-  function handleEduChange(index, e) {
-    const updated = [...cvData.educations];
-    updated[index][e.target.name] = e.target.value;
-    setCvData({ ...cvData, educations: updated });
-  }
-
-  function addEducation() {
-    setCvData({
-      ...cvData,
-      educations: [
-        ...cvData.educations,
-        { degree: "", school: "", eduYear: "" },
-      ],
-    });
-  }
-
-  function removeEducation(index) {
-    const updated = cvData.educations.filter((_, i) => i !== index);
-    setCvData({ ...cvData, educations: updated });
-  }
+  const {
+    cvData,
+    selectedTemplate,
+    setSelectedTemplate,
+    handleChange,
+    handleExpChange,
+    addExperience,
+    removeExperience,
+    handleEduChange,
+    addEducation,
+    removeEducation,
+    resetAll,
+  } = useCVData();
 
   function renderTemplate() {
     switch (selectedTemplate) {
@@ -94,24 +34,26 @@ function App() {
 
   return (
     <div className="app-container">
-      <header>My CV</header>
+      <header>
+        <h1>My Awesome CV Builder</h1>
+      </header>
 
       <main className="builder-layout">
         <section className="form-section">
-          <h2>Biodata</h2>
-          <label>Full Name</label>
+          <h2>Personal Info</h2>
+          <label>Full name</label>
           <input
             name="name"
             value={cvData.name}
             onChange={handleChange}
-            placeholder="e.g. John Doe"
+            placeholder="Your full name"
           />
           <label>Email</label>
           <input
             name="email"
             value={cvData.email}
             onChange={handleChange}
-            placeholder="e.g. john.doe@example.com"
+            placeholder="e.g. your@email.com"
           />
           <label>Phone</label>
           <input
@@ -125,7 +67,7 @@ function App() {
             name="summary"
             value={cvData.summary}
             onChange={handleChange}
-            placeholder="Tell us about yourself"
+            placeholder="Tell us about yourself..."
           />
           <hr />
 
@@ -137,30 +79,29 @@ function App() {
                   className="remove-btn"
                   onClick={() => removeExperience(index)}
                 >
-                  X Remove
+                  ✕ Remove
                 </button>
               )}
-
               <label>Job Title</label>
               <input
                 name="jobTitle"
                 value={exp.jobTitle}
                 onChange={(e) => handleExpChange(index, e)}
-                placeholder="e.g. Software Engineer"
+                placeholder="e.g. Frontend Developer"
               />
               <label>Company</label>
               <input
                 name="company"
                 value={exp.company}
                 onChange={(e) => handleExpChange(index, e)}
-                placeholder="e.g. Tech Corp"
+                placeholder="e.g. UIB"
               />
-              <label>Years</label>
+              <label>Year</label>
               <input
                 name="workYear"
                 value={exp.workYear}
                 onChange={(e) => handleExpChange(index, e)}
-                placeholder="e.g. 2020 - 2023"
+                placeholder="e.g. 2023 - Present"
               />
             </div>
           ))}
@@ -177,30 +118,29 @@ function App() {
                   className="remove-btn"
                   onClick={() => removeEducation(index)}
                 >
-                  X Remove
+                  ✕ Remove
                 </button>
               )}
-
-              <label>School/University</label>
+              <label>School / University</label>
               <input
                 name="school"
                 value={edu.school}
                 onChange={(e) => handleEduChange(index, e)}
-                placeholder="e.g. Your University/School"
+                placeholder="e.g. Universitas Internasional Batam"
               />
               <label>Degree</label>
               <input
                 name="degree"
                 value={edu.degree}
                 onChange={(e) => handleEduChange(index, e)}
-                placeholder="e.g. Bachelor of Science in Computer Science"
+                placeholder="e.g. S1 Informatika"
               />
-              <label>Years</label>
+              <label>Year</label>
               <input
                 name="eduYear"
                 value={edu.eduYear}
                 onChange={(e) => handleEduChange(index, e)}
-                placeholder="e.g. 2016 - 2020"
+                placeholder="e.g. 2021 - 2025"
               />
             </div>
           ))}
@@ -210,38 +150,23 @@ function App() {
           <hr />
 
           <h2>Skills</h2>
-          <label>List your skills separated by commas</label>
+          <label>Skills (separate with comma)</label>
           <input
             name="skills"
             value={cvData.skills}
             onChange={handleChange}
-            placeholder="e.g. Figma, Excel, JavaScript"
+            placeholder="e.g. React, CSS, Figma"
           />
 
           <hr />
-          <button
-            className="clear-btn"
-            onClick={() => {
-              localStorage.removeItem("cvData");
-              localStorage.removeItem("selectedTemplate");
-              setCvData({
-                name: "",
-                email: "",
-                phone: "",
-                summary: "",
-                experiences: [{ jobTitle: "", company: "", workYear: "" }],
-                educations: [{ school: "", degree: "", eduYear: "" }],
-                skills: "",
-              });
-            }}
-          >
+          <button className="clear-btn" onClick={resetAll}>
             Clear All & Reset
           </button>
         </section>
 
         <section className="preview-section">
           <div className="preview-controls">
-            <span className="preview-label-text">Template Selector</span>
+            <span className="preview-label-text">TEMPLATE SELECTOR</span>
             <button onClick={() => window.print()} className="download-btn">
               Download PDF
             </button>
@@ -249,8 +174,9 @@ function App() {
 
           <TemplateSelector
             selectedTemplate={selectedTemplate}
-            onTemplateChange={setSeletcedTemplate}
+            onTemplateChange={setSelectedTemplate}
           />
+
           <div className="cv-document">{renderTemplate()}</div>
         </section>
       </main>
