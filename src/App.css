@@ -591,6 +591,48 @@ hr {
   transform: translateY(-2px);
 }
 
+/* === NAVBAR === */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 32px;
+  background-color: #16213e;
+  border-bottom: 2px solid #e94560;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.navbar-brand a {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+}
+.navbar-links {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+.nav-link {
+  font-size: 14px;
+  color: #aaaaaa;
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+.nav-link:hover {
+  color: #ffffff;
+  background-color: #0f3460;
+}
+.nav-link.active {
+  color: #e94560;
+  font-weight: 500;
+  background-color: #1a1a2e;
+}
+
 /* ============================================
    @media print — HANYA INI YANG BOLEH DI SINI
    Jangan taruh class lain di dalam blok ini!
@@ -608,6 +650,7 @@ hr {
   }
 
   header,
+  .navbar,
   .form-section,
   .preview-controls,
   .template-selector {
