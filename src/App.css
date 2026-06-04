@@ -54,7 +54,7 @@ label {
   color: #aaaaaa;
 }
 
-input,
+input:not([type="radio"]),
 textarea {
   width: 100%;
   padding: 10px 12px;
@@ -67,7 +67,7 @@ textarea {
   transition: border-color 0.2s;
 }
 
-input:focus,
+input:not([type="radio"]):focus,
 textarea:focus {
   border-color: #e94560;
 }

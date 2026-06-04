@@ -35,7 +35,7 @@ function App() {
   return (
     <div className="app-container">
       <header>
-        <h1>My Awesome CV Builder</h1>
+        <h1>My CV Builder</h1>
       </header>
 
       <main className="builder-layout">
