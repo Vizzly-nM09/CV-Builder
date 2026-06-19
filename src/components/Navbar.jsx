@@ -6,7 +6,7 @@ function Navbar() {
   return (
     <nav className="navbar">
       <div className="navbar-brand">
-        <Link to="/">📄 CV Builder</Link>
+        <Link to="/">📄 QuickCV</Link>
       </div>
 
       <div className="navbar-links">

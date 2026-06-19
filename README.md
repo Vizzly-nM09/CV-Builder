@@ -1,9 +1,9 @@
-# 📄 CV Builder
+# 📄 QuickCV
 
 A web app that lets you fill in your info and instantly see a beautiful, 
 downloadable CV. It built with React + Vite.
 
-![CV Builder Preview](./src/assets/hero.png)
+![QuickCV Preview](./src/assets/hero.png)
 
 ---
 
