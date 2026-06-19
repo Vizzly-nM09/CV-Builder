@@ -4,6 +4,8 @@ import TemplateATS from "./components/templates/TemplateATS";
 import TemplateModern from "./components/templates/TemplateModern";
 import TemplateMinimal from "./components/templates/TemplateMinimal";
 import TemplateSelector from "./components/TemplateSelector";
+import PersonalInfoForm from "./components/forms/PersonalInfoForm";
+import ExperienceForm from "./components/forms/ExperienceForm";
 
 function App() {
   const {
@@ -34,85 +36,18 @@ function App() {
 
   return (
     <div className="app-container">
-      <header>
-        <h1>My CV Builder</h1>
-      </header>
-
       <main className="builder-layout">
         <section className="form-section">
-          <h2>Personal Info</h2>
-          <label>Full name</label>
-          <input
-            name="name"
-            value={cvData.name}
-            onChange={handleChange}
-            placeholder="Your full name"
+          <PersonalInfoForm cvData={cvData} handleChange={handleChange} />
+          <ExperienceForm
+            experiences={cvData.experiences}
+            handleExpChange={handleExpChange}
+            addExperience={addExperience}
+            removeExperience={removeExperience}
           />
-          <label>Email</label>
-          <input
-            name="email"
-            value={cvData.email}
-            onChange={handleChange}
-            placeholder="e.g. your@email.com"
-          />
-          <label>Phone</label>
-          <input
-            name="phone"
-            value={cvData.phone}
-            onChange={handleChange}
-            placeholder="e.g. 08123456789"
-          />
-          <label>Summary</label>
-          <textarea
-            name="summary"
-            value={cvData.summary}
-            onChange={handleChange}
-            placeholder="Tell us about yourself..."
-          />
-          <hr />
-
-          <h2>Work Experience</h2>
-          {cvData.experiences.map((exp, index) => (
-            <div key={index} className="entry-block">
-              {cvData.experiences.length > 1 && (
-                <button
-                  className="remove-btn"
-                  onClick={() => removeExperience(index)}
-                >
-                  ✕ Remove
-                </button>
-              )}
-              <label>Job Title</label>
-              <input
-                name="jobTitle"
-                value={exp.jobTitle}
-                onChange={(e) => handleExpChange(index, e)}
-                placeholder="e.g. Frontend Developer"
-              />
-              <label>Company</label>
-              <input
-                name="company"
-                value={exp.company}
-                onChange={(e) => handleExpChange(index, e)}
-                placeholder="e.g. UIB"
-              />
-              <label>Year</label>
-              <input
-                name="workYear"
-                value={exp.workYear}
-                onChange={(e) => handleExpChange(index, e)}
-                placeholder="e.g. 2023 - Present"
-              />
-            </div>
-          ))}
-          <button className="add-btn" onClick={addExperience}>
-            + Add Experience
-          </button>
-          <hr />
-
           <h2>Education</h2>
           {cvData.educations.map((edu, index) => (
-            <div key={index} className="entry-block">
+            <div key={edu.id} className="entry-block">
               {cvData.educations.length > 1 && (
                 <button
                   className="remove-btn"

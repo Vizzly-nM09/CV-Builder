@@ -11,8 +11,17 @@ export function useCVData() {
           phone: "",
           summary: "",
           skills: "",
-          experiences: [{ jobTitle: "", company: "", workYear: "" }],
-          educations: [{ degree: "", school: "", eduYear: "" }],
+          experiences: [
+            {
+              id: crypto.randomUUID(),
+              jobTitle: "",
+              company: "",
+              workYear: "",
+            },
+          ],
+          educations: [
+            { id: crypto.randomUUID(), degree: "", school: "", eduYear: "" },
+          ],
         };
   });
 
@@ -44,7 +53,7 @@ export function useCVData() {
       ...cvData,
       experiences: [
         ...cvData.experiences,
-        { jobTitle: "", company: "", workYear: "" },
+        { id: crypto.randomUUID(), jobTitle: "", company: "", workYear: "" },
       ],
     });
   }
@@ -65,7 +74,7 @@ export function useCVData() {
       ...cvData,
       educations: [
         ...cvData.educations,
-        { degree: "", school: "", eduYear: "" },
+        { id: crypto.randomUUID(), degree: "", school: "", eduYear: "" },
       ],
     });
   }
@@ -84,8 +93,12 @@ export function useCVData() {
       phone: "",
       summary: "",
       skills: "",
-      experiences: [{ jobTitle: "", company: "", workYear: "" }],
-      educations: [{ degree: "", school: "", eduYear: "" }],
+      experiences: [
+        { id: crypto.randomUUID(), jobTitle: "", company: "", workYear: "" },
+      ],
+      educations: [
+        { id: crypto.randomUUID(), degree: "", school: "", eduYear: "" },
+      ],
     });
     setSelectedTemplate("modern");
   }
