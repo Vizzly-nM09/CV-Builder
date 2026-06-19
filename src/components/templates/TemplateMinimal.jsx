@@ -1,7 +1,15 @@
 import { useCVContext } from "../../context/CVContext";
+import { useMemo } from "react";
 
 function TemplateMinimal({}) {
   const { cvData } = useCVContext();
+
+  const skillsList = useMemo(() => {
+    return cvData.skills
+      .split(",")
+      .map((skill) => skill.trim())
+      .filter(Boolean);
+  }, [cvData.skills]);
 
   return (
     <div className="cv-minimal">
@@ -21,9 +29,9 @@ function TemplateMinimal({}) {
             <div className="minimal-section">
               <h3>Skills</h3>
               <div className="minimal-skill-list">
-                {cvData.skills.split(",").map((skill, i) => (
+                {skillsList.map((skill, i) => (
                   <span key={i} className="minimal-skill">
-                    {skill.trim()}
+                    {skill}
                   </span>
                 ))}
               </div>

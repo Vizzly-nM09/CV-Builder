@@ -1,7 +1,15 @@
 import { useCVContext } from "../../context/CVContext";
+import { useMemo } from "react";
 
 function TemplateModern({}) {
   const { cvData } = useCVContext();
+
+  const skillsList = useMemo(() => {
+    return cvData.skills
+      .split(",")
+      .map((skill) => skill.trim())
+      .filter(Boolean);
+  }, [cvData.skills]);
 
   return (
     <div className="cv-modern">
@@ -72,9 +80,9 @@ function TemplateModern({}) {
         <div className="modern-section">
           <h2>Skills</h2>
           <div className="modern-skills">
-            {cvData.skills.split(",").map((skill, i) => (
+            {skillsList.map((skill, i) => (
               <span key={i} className="modern-skill-badge">
-                {skill.trim()}
+                {skill}
               </span>
             ))}
           </div>

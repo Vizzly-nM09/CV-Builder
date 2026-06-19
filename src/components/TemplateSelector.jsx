@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 function TemplateSelector({ selectedTemplate, onTemplateChange }) {
   return (
     <div className="template-selector">
@@ -37,4 +39,4 @@ function TemplateSelector({ selectedTemplate, onTemplateChange }) {
   );
 }
 
-export default TemplateSelector;
+export default memo(TemplateSelector);
