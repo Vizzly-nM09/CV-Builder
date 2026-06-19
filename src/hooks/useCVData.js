@@ -11,24 +11,16 @@ export function useCVData() {
           phone: "",
           summary: "",
           skills: "",
-          experiences: [
-            {
-              id: crypto.randomUUID(),
-              jobTitle: "",
-              company: "",
-              workYear: "",
-            },
-          ],
-          educations: [
-            { id: crypto.randomUUID(), degree: "", school: "", eduYear: "" },
-          ],
+          experiences: [{ jobTitle: "", company: "", workYear: "" }],
+          educations: [{ degree: "", school: "", eduYear: "" }],
         };
   });
 
   const [selectedTemplate, setSelectedTemplate] = useState(() => {
-    const saved = localStorage.getItem("selected template");
-    return saved || "modern";
+    return localStorage.getItem("selectedTemplate") || "modern";
   });
+
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     localStorage.setItem("cvData", JSON.stringify(cvData));
@@ -39,7 +31,12 @@ export function useCVData() {
   }, [selectedTemplate]);
 
   function handleChange(e) {
-    setCvData({ ...cvData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setCvData({ ...cvData, [name]: value });
+
+    if (errors[name]) {
+      setErrors({ ...errors, [name]: "" });
+    }
   }
 
   function handleExpChange(index, e) {
@@ -53,7 +50,7 @@ export function useCVData() {
       ...cvData,
       experiences: [
         ...cvData.experiences,
-        { id: crypto.randomUUID(), jobTitle: "", company: "", workYear: "" },
+        { jobTitle: "", company: "", workYear: "" },
       ],
     });
   }
@@ -74,7 +71,7 @@ export function useCVData() {
       ...cvData,
       educations: [
         ...cvData.educations,
-        { id: crypto.randomUUID(), degree: "", school: "", eduYear: "" },
+        { degree: "", school: "", eduYear: "" },
       ],
     });
   }
@@ -93,20 +90,35 @@ export function useCVData() {
       phone: "",
       summary: "",
       skills: "",
-      experiences: [
-        { id: crypto.randomUUID(), jobTitle: "", company: "", workYear: "" },
-      ],
-      educations: [
-        { id: crypto.randomUUID(), degree: "", school: "", eduYear: "" },
-      ],
+      experiences: [{ jobTitle: "", company: "", workYear: "" }],
+      educations: [{ degree: "", school: "", eduYear: "" }],
     });
     setSelectedTemplate("modern");
+    setErrors({});
+  }
+
+  function validate() {
+    const newErrors = {};
+
+    if (!cvData.name.trim()) newErrors.name = "Full name is required";
+
+    if (!cvData.email.trim()) newErrors.email = "Email is required";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cvData.email))
+      newErrors.email = "Email format is invalid";
+
+    if (!cvData.phone.trim()) newErrors.phone = "Phone number is required";
+
+    setErrors(newErrors);
+
+    return Object.keys(newErrors).length === 0;
   }
 
   return {
     cvData,
     selectedTemplate,
     setSelectedTemplate,
+    errors, // ← NEW
+    validate, // ← NEW
     handleChange,
     handleExpChange,
     addExperience,

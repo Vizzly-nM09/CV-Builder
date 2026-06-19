@@ -633,6 +633,18 @@ hr {
   background-color: #1a1a2e;
 }
 
+/* === FORM VALIDATION === */
+input.input-error {
+  border-color: #e94560 !important;
+  background-color: #2a1520;
+}
+
+.error-msg {
+  font-size: 11px;
+  color: #e94560;
+  margin-top: -4px;
+}
+
 /* ============================================
    @media print — HANYA INI YANG BOLEH DI SINI
    Jangan taruh class lain di dalam blok ini!

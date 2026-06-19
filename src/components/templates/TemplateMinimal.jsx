@@ -1,4 +1,8 @@
-function TemplateMinimal({ cvData }) {
+import { useCVContext } from "../../context/CVContext";
+
+function TemplateMinimal({}) {
+  const { cvData } = useCVContext();
+
   return (
     <div className="cv-minimal">
       <div className="minimal-container">

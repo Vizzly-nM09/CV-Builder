@@ -1,15 +1,18 @@
-function ExperienceForm({
-  experiences,
-  handleExpChange,
-  addExperience,
-  removeExperience,
-}) {
+import { useCVContext } from "../../context/CVContext.jsx";
+
+function ExperienceForm() {
+  // Ambil semua yang dibutuhkan dari context
+  const { cvData, handleExpChange, removeExperience, addExperience } =
+    useCVContext();
+
   return (
-    <>
+    <div>
       <h2>Work Experience</h2>
-      {experiences.map((exp, index) => (
-        <div key={exp.id} className="entry-block">
-          {experiences.length > 1 && (
+
+      {/* Loop di DALAM component — bukan dari App.jsx */}
+      {cvData.experiences.map((exp, index) => (
+        <div key={index} className="entry-block">
+          {cvData.experiences.length > 1 && (
             <button
               className="remove-btn"
               onClick={() => removeExperience(index)}
@@ -17,6 +20,7 @@ function ExperienceForm({
               ✕ Remove
             </button>
           )}
+
           <label>Job Title</label>
           <input
             name="jobTitle"
@@ -24,13 +28,15 @@ function ExperienceForm({
             onChange={(e) => handleExpChange(index, e)}
             placeholder="e.g. Frontend Developer"
           />
+
           <label>Company</label>
           <input
             name="company"
             value={exp.company}
             onChange={(e) => handleExpChange(index, e)}
-            placeholder="Your company"
+            placeholder="e.g. UIB"
           />
+
           <label>Year</label>
           <input
             name="workYear"
@@ -40,11 +46,12 @@ function ExperienceForm({
           />
         </div>
       ))}
+
       <button className="add-btn" onClick={addExperience}>
         + Add Experience
       </button>
       <hr />
-    </>
+    </div>
   );
 }
 

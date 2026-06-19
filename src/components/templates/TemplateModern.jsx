@@ -1,4 +1,8 @@
-function TemplateModern({ cvData }) {
+import { useCVContext } from "../../context/CVContext";
+
+function TemplateModern({}) {
+  const { cvData } = useCVContext();
+
   return (
     <div className="cv-modern">
       {/* Dark Header */}

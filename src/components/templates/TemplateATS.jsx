@@ -1,4 +1,8 @@
-function TemplateATS({ cvData }) {
+import { useCVContext } from "../../context/CVContext";
+
+function TemplateATS({}) {
+  const { cvData } = useCVContext();
+
   return (
     <div className="cv-ats">
       <div className="cv-header">
