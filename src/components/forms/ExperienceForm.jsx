@@ -20,21 +20,21 @@ function ExperienceForm() {
           {cvData.experiences.length > 1 && (
             <div className="entry-actions">
               <button
-                className="remove-btn"
+                className="btn remove-btn"
                 onClick={() => removeExperience(index)}
               >
                 ✕ Remove
               </button>
               <div className="move-buttons">
                 <button
-                  className="move-btn"
+                  className="btn move-btn"
                   onClick={() => moveExperienceUp(index)}
                   disabled={index === 0}
                 >
                   ↑
                 </button>
                 <button
-                  className="move-btn"
+                  className="btn move-btn"
                   onClick={() => moveExperienceDown(index)}
                   disabled={index === cvData.experiences.length - 1}
                 >
@@ -70,7 +70,7 @@ function ExperienceForm() {
         </div>
       ))}
 
-      <button className="add-btn" onClick={addExperience}>
+      <button className="btn add-btn" onClick={addExperience}>
         + Add Experience
       </button>
       <hr />

@@ -19,21 +19,21 @@ function EducationForm() {
           {cvData.educations.length > 1 && (
             <div className="entry-actions">
               <button
-                className="remove-btn"
+                className="btn remove-btn"
                 onClick={() => removeEducation(index)}
               >
                 ✕ Remove
               </button>
               <div className="move-buttons">
                 <button
-                  className="move-btn"
+                  className="btn move-btn"
                   onClick={() => moveEducationUp(index)}
                   disabled={index === 0}
                 >
                   ↑
                 </button>
                 <button
-                  className="move-btn"
+                  className="btn move-btn"
                   onClick={() => moveEducationDown(index)}
                   disabled={index === cvData.educations.length - 1}
                 >
@@ -66,7 +66,7 @@ function EducationForm() {
           />
         </div>
       ))}
-      <button className="add-btn" onClick={addEducation}>
+      <button className="btn add-btn" onClick={addEducation}>
         + Add Education
       </button>
       <hr />

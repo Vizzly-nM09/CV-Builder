@@ -13,7 +13,6 @@ function App() {
   const { selectedTemplate, setSelectedTemplate, validate, resetAll } =
     useCVContext();
 
-
   function renderTemplate() {
     switch (selectedTemplate) {
       case "ats":
@@ -34,7 +33,7 @@ function App() {
           <ExperienceForm />
           <EducationForm />
           <SkillsForm />
-          <button className="clear-btn" onClick={resetAll}>
+          <button className="btn clear-btn" onClick={resetAll}>
             Clear All & Reset
           </button>
         </section>
@@ -47,7 +46,7 @@ function App() {
                 const isValid = validate();
                 if (isValid) window.print();
               }}
-              className="download-btn"
+              className="btn download-btn"
             >
               Download PDF
             </button>
