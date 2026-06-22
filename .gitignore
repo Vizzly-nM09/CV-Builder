@@ -11,6 +11,7 @@ node_modules
 dist
 dist-ssr
 *.local
+learning_journal.md
 
 # Editor directories and files
 .vscode/*

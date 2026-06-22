@@ -1,9 +1,14 @@
 import { useCVContext } from "../../context/CVContext.jsx";
 
 function ExperienceForm() {
-  // Ambil semua yang dibutuhkan dari context
-  const { cvData, handleExpChange, removeExperience, addExperience } =
-    useCVContext();
+  const {
+    cvData,
+    handleExpChange,
+    removeExperience,
+    addExperience,
+    moveExperienceUp,
+    moveExperienceDown,
+  } = useCVContext();
 
   return (
     <div>
@@ -13,12 +18,30 @@ function ExperienceForm() {
       {cvData.experiences.map((exp, index) => (
         <div key={index} className="entry-block">
           {cvData.experiences.length > 1 && (
-            <button
-              className="remove-btn"
-              onClick={() => removeExperience(index)}
-            >
-              ✕ Remove
-            </button>
+            <div className="entry-actions">
+              <button
+                className="remove-btn"
+                onClick={() => removeExperience(index)}
+              >
+                ✕ Remove
+              </button>
+              <div className="move-buttons">
+                <button
+                  className="move-btn"
+                  onClick={() => moveExperienceUp(index)}
+                  disabled={index === 0}
+                >
+                  ↑
+                </button>
+                <button
+                  className="move-btn"
+                  onClick={() => moveExperienceDown(index)}
+                  disabled={index === cvData.experiences.length - 1}
+                >
+                  ↓
+                </button>
+              </div>
+            </div>
           )}
 
           <label>Job Title</label>

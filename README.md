@@ -23,8 +23,8 @@ downloadable CV. It built with React + Vite.
 |---|---|
 | React 19 | UI components & state management |
 | Vite 8 | Build tool & dev server |
-| useState | Live form data binding |
-| react-to-pdf | PDF export |
+| Context API | Global state management |
+| Custom Hooks | Abstracting business logic |
 | CSS Flexbox | Two-column layout |
 
 ---
@@ -53,22 +53,29 @@ Open `http://localhost:5173` in your browser.
 
 This was my first React project, built in a single session starting from zero JavaScript knowledge.
 
-- React components and JSX syntax
-- `useState` for live reactive data
-- Conditional rendering with `&&`
-- List rendering with `.map()`
-- `ref` for targeting DOM elements
-- CSS Flexbox layout
-- Git version control basics
+- **React Components and JSX syntax**
+- **State Management:** `useState` for live reactive data
+- **Context API:** Avoiding prop-drilling with `createContext` and `useContext`
+- **Performance Optimization:** Caching renders and values using `React.memo` and `useMemo`
+- **Immutability:** Safely reordering array items without mutating state
+- **Component Extraction:** Refactoring large files into single-responsibility components
+- **Conditional Rendering:** Using `&&` for dynamic UI
+- **List Rendering:** Mapping over arrays with `.map()`
+- **CSS Layout:** Building responsive dual-pane layouts with Flexbox
+- **Git:** Version control basics
 
 ---
 
 ## 🗺️ Roadmap
 
-- [ ] Multiple work experience entries
-- [ ] Multiple education entries  
-- [ ] Multiple CV templates
-- [ ] Save data with localStorage
+- [x] Multiple work experience entries
+- [x] Multiple education entries  
+- [x] Multiple CV templates (ATS, Modern, Minimal)
+- [x] Save data with localStorage
+- [x] Entry reordering (Move Up / Move Down)
+- [ ] Add color theme picker for templates
+- [ ] Implement drag-and-drop reordering (e.g., `dnd-kit`)
+- [ ] Form validation improvements
 - [ ] Deploy to Vercel
 
 ---

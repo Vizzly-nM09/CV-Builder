@@ -1,8 +1,14 @@
 import { useCVContext } from "../../context/CVContext.jsx";
 
 function EducationForm() {
-  const { cvData, handleEduChange, addEducation, removeEducation } =
-    useCVContext();
+  const {
+    cvData,
+    handleEduChange,
+    addEducation,
+    removeEducation,
+    moveEducationUp,
+    moveEducationDown,
+  } = useCVContext();
 
   return (
     <div>
@@ -11,12 +17,30 @@ function EducationForm() {
       {cvData.educations.map((edu, index) => (
         <div key={index} className="entry-block">
           {cvData.educations.length > 1 && (
-            <button
-              className="remove-btn"
-              onClick={() => removeEducation(index)}
-            >
-              ✕ Remove
-            </button>
+            <div className="entry-actions">
+              <button
+                className="remove-btn"
+                onClick={() => removeEducation(index)}
+              >
+                ✕ Remove
+              </button>
+              <div className="move-buttons">
+                <button
+                  className="move-btn"
+                  onClick={() => moveEducationUp(index)}
+                  disabled={index === 0}
+                >
+                  ↑
+                </button>
+                <button
+                  className="move-btn"
+                  onClick={() => moveEducationDown(index)}
+                  disabled={index === cvData.educations.length - 1}
+                >
+                  ↓
+                </button>
+              </div>
+            </div>
           )}
 
           <label>School / University</label>

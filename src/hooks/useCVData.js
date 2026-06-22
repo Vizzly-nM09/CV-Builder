@@ -60,6 +60,20 @@ export function useCVData() {
     setCvData({ ...cvData, experiences: updated });
   }
 
+  function moveExperienceUp(index) {
+    if (index === 0) return;
+    const updated = [...cvData.experiences];
+    [updated[index - 1], updated[index]] = [updated[index], updated[index - 1]];
+    setCvData({ ...cvData, experiences: updated });
+  }
+
+  function moveExperienceDown(index) {
+    if (index === cvData.experiences.length - 1) return;
+    const updated = [...cvData.experiences];
+    [updated[index], updated[index + 1]] = [updated[index + 1], updated[index]];
+    setCvData({ ...cvData, experiences: updated });
+  }
+
   function handleEduChange(index, e) {
     const updated = [...cvData.educations];
     updated[index][e.target.name] = e.target.value;
@@ -78,6 +92,20 @@ export function useCVData() {
 
   function removeEducation(index) {
     const updated = cvData.educations.filter((_, i) => i !== index);
+    setCvData({ ...cvData, educations: updated });
+  }
+
+  function moveEducationUp(index) {
+    if (index === 0) return;
+    const updated = [...cvData.educations];
+    [updated[index - 1], updated[index]] = [updated[index], updated[index - 1]];
+    setCvData({ ...cvData, educations: updated });
+  }
+
+  function moveEducationDown(index) {
+    if (index === cvData.educations.length - 1) return;
+    const updated = [...cvData.educations];
+    [updated[index], updated[index + 1]] = [updated[index + 1], updated[index]];
     setCvData({ ...cvData, educations: updated });
   }
 
@@ -117,15 +145,19 @@ export function useCVData() {
     cvData,
     selectedTemplate,
     setSelectedTemplate,
-    errors, // ← NEW
-    validate, // ← NEW
+    errors,
+    validate,
     handleChange,
     handleExpChange,
     addExperience,
     removeExperience,
+    moveExperienceUp,
+    moveExperienceDown,
     handleEduChange,
     addEducation,
     removeEducation,
+    moveEducationUp,
+    moveEducationDown,
     resetAll,
   };
 }
