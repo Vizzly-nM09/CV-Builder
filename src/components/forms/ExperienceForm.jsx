@@ -16,7 +16,7 @@ function ExperienceForm() {
 
       {/* Loop di DALAM component — bukan dari App.jsx */}
       {cvData.experiences.map((exp, index) => (
-        <div key={index} className="entry-block">
+        <div key={exp.id} className="entry-block">
           {cvData.experiences.length > 1 && (
             <div className="entry-actions">
               <button

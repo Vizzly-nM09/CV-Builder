@@ -11,8 +11,12 @@ export function useCVData() {
           phone: "",
           summary: "",
           skills: "",
-          experiences: [{ jobTitle: "", company: "", workYear: "" }],
-          educations: [{ degree: "", school: "", eduYear: "" }],
+          experiences: [
+            { id: Date.now(), jobTitle: "", company: "", workYear: "" },
+          ],
+          educations: [
+            { id: Date.now() + 1, degree: "", school: "", eduYear: "" },
+          ],
         };
   });
 
@@ -50,7 +54,7 @@ export function useCVData() {
       ...cvData,
       experiences: [
         ...cvData.experiences,
-        { jobTitle: "", company: "", workYear: "" },
+        { id: Date.now(), jobTitle: "", company: "", workYear: "" },
       ],
     });
   }

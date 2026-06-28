@@ -15,7 +15,7 @@ function EducationForm() {
       <h2>Education</h2>
 
       {cvData.educations.map((edu, index) => (
-        <div key={index} className="entry-block">
+        <div key={edu.id} className="entry-block">
           {cvData.educations.length > 1 && (
             <div className="entry-actions">
               <button
