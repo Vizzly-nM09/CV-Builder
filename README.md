@@ -1,7 +1,6 @@
 # 📄 QuickCV
 
-A web app that lets you fill in your info and instantly see a beautiful, 
-downloadable CV. It built with React + Vite.
+A simple web app where you can make your own CV, and download it as PDF document. Built with React + Vite for my boredom study.
 
 ![QuickCV Preview](./src/assets/hero.png)
 
@@ -9,23 +8,26 @@ downloadable CV. It built with React + Vite.
 
 ## ✨ Features
 
-- 📝 Live two-way form — type and see your CV update instantly
+- 📝 Live two-way form, type and see your CV update instantly
 - 🎨 Professional CV preview with dark header and accent colors
-- 🏷️ Skill badge generator — type skills separated by commas
+- 🏷️ Skill badge generator, type skills that separated by typing comma
 - 📥 Download your CV as a PDF with one click
-- ⚡ Fast and lightweight — no backend needed
+- ⚡ Fast and lightweight app
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Technology | Purpose |
-|---|---|
-| React 19 | UI components & state management |
-| Vite 8 | Build tool & dev server |
-| Context API | Global state management |
-| Custom Hooks | Abstracting business logic |
-| CSS Flexbox | Two-column layout |
+| Category | Technology        | Purpose                                    |
+| -------- | ----------------- | ------------------------------------------ |
+| Language | JavaScript (ES6+) | Core programming language                  |
+| Library  | React 19          | UI components & state management           |
+| Build    | Vite 8            | Dev server, hot reload & production bundle |
+| Styling  | Vanilla CSS       | Custom design with CSS Variables & Flexbox |
+| Tools    | VS Code, Git, npm | Code editor, version control & packages    |
+| Storage  | localStorage      | Client-side data persistence               |
+
+> **Note:** This is a pure frontend project. No backend or database.
 
 ---
 
@@ -51,25 +53,52 @@ Open `http://localhost:5173` in your browser.
 
 ## 📚 What I Learned
 
-This was my first React project, built in a single session starting from zero JavaScript knowledge.
+This was my first React project, built from zero JavaScript knowledge. Here's everything I picked up along the way:
 
-- **React Components and JSX syntax**
-- **State Management:** `useState` for live reactive data
-- **Context API:** Avoiding prop-drilling with `createContext` and `useContext`
-- **Performance Optimization:** Caching renders and values using `React.memo` and `useMemo`
-- **Immutability:** Safely reordering array items without mutating state
-- **Component Extraction:** Refactoring large files into single-responsibility components
-- **Conditional Rendering:** Using `&&` for dynamic UI
-- **List Rendering:** Mapping over arrays with `.map()`
-- **CSS Layout:** Building responsive dual-pane layouts with Flexbox
-- **Git:** Version control basics
+### React Core
+
+- **JSX** — Writing HTML-like syntax inside JavaScript
+- **Components** — Breaking UI into reusable, single-responsibility pieces
+- **Props** — Passing data from parent to child components
+- **Conditional Rendering** — Showing/hiding UI with `&&` and ternary `? :`
+- **List Rendering** — Mapping arrays to JSX elements with `.map()` and `key`
+
+### React Hooks
+
+- **`useState`** — Storing and updating reactive state
+- **`useEffect`** — Running side effects (localStorage sync)
+- **`useContext`** — Accessing global state without prop drilling
+- **`useMemo`** — Caching expensive computations (skills splitting)
+- **`useReducer`** — Centralized state management with actions and a reducer function
+- **`useRef`** — Referencing DOM elements directly
+
+### Architecture & Patterns
+
+- **Custom Hooks** — Extracting stateful logic into reusable `use*` functions (`useCVData`)
+- **Context API** — Creating a broadcast channel with `createContext` + `Provider`
+- **Component Extraction** — Refactoring a monolithic file into focused components
+- **Immutability** — Never mutating state directly; always copying with spread `...`
+- **`React.memo`** — Preventing unnecessary re-renders for prop-based components
+
+### CSS
+
+- **Flexbox & Grid** — Building responsive two-column layouts
+- **CSS Variables** — Defining design tokens in `:root` for easy theming
+- **Utility Classes** — DRY principle with shared `.btn` base class
+- **`@media print`** — Custom print stylesheet for PDF downloads
+
+### Tooling
+
+- **Git** — Version control, commits, branching, and pushing to GitHub
+- **Vite** — Fast dev server with hot module replacement
+- **npm** — Installing, managing, and removing packages
 
 ---
 
 ## 🗺️ Roadmap
 
 - [x] Multiple work experience entries
-- [x] Multiple education entries  
+- [x] Multiple education entries
 - [x] Multiple CV templates (ATS, Modern, Minimal)
 - [x] Save data with localStorage
 - [x] Entry reordering (Move Up / Move Down)
