@@ -108,9 +108,3 @@ This was my first React project, built from zero JavaScript knowledge. Here's ev
 - [ ] Deploy to Vercel
 
 ---
-
-## 👤 Author
-
-**Fadhlan Limanda**  
-Intern Frontend Developer — UIB  
-[GitHub @Vizzly-nM09](https://github.com/Vizzly-nM09)
