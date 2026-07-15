@@ -1,6 +1,6 @@
 # 📄 QuickCV
 
-A simple web app where you can make your own CV, and download it as PDF document. Built with React + Vite for my boredom study.
+A simple web app where you can make your own CV, and download it as PDF document. Built with React + Vite.
 
 ![QuickCV Preview](./src/assets/hero.png)
 
@@ -108,9 +108,3 @@ This was my first React project, built from zero JavaScript knowledge. Here's ev
 - [ ] Deploy to Vercel
 
 ---
-
-## 👤 Author
-
-**Fadhlan Limanda**  
-Intern Frontend Developer — UIB  
-[GitHub @Vizzly-nM09](https://github.com/Vizzly-nM09)
