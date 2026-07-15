@@ -102,9 +102,11 @@ This was my first React project, built from zero JavaScript knowledge. Here's ev
 - [x] Multiple CV templates (ATS, Modern, Minimal)
 - [x] Save data with localStorage
 - [x] Entry reordering (Move Up / Move Down)
-- [ ] Add color theme picker for templates
-- [ ] Implement drag-and-drop reordering (e.g., `dnd-kit`)
-- [ ] Form validation improvements
+- [x] Form validation (name, email, phone)
+- [x] CSS Variables & Utility Classes (clean code refactor)
+- [x] Step-by-step form wizard with progress bar
+- [x] React Router (Landing Page + Builder Page)
+- [ ] Checking and fixing for small/minor bug and some error
 - [ ] Deploy to Vercel
 
 ---
