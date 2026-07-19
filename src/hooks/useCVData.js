@@ -89,7 +89,7 @@ export function useCVData() {
       ...cvData,
       educations: [
         ...cvData.educations,
-        { degree: "", school: "", eduYear: "" },
+        { id: Date.now(), degree: "", school: "", eduYear: "" },
       ],
     });
   }
