@@ -106,16 +106,17 @@ This was my first React project, built from zero JavaScript knowledge. Here's ev
 
 ## 🗺️ Roadmap
 
-- [x] Multiple work experience entries
-- [x] Multiple education entries
-- [x] Multiple CV templates (ATS, Modern, Minimal)
-- [x] Save data with localStorage
-- [x] Entry reordering (Move Up / Move Down)
-- [x] Form validation (name, email, phone)
-- [x] CSS Variables & Utility Classes (clean code refactor)
-- [x] Step-by-step form wizard with progress bar
-- [x] React Router (Landing Page + Builder Page)
-- [ ] Checking and fixing for small/minor bug and some error
-- [ ] Deploy to Vercel
+- ✅ Multiple work experience entries
+- ✅ Multiple education entries
+- ✅ Multiple CV templates (ATS, Modern, Minimal)
+- ✅ Save data with localStorage
+- ✅ Entry reordering (Move Up / Move Down)
+- ✅ Advanced Drag & Drop reordering (@dnd-kit)
+- ✅ Advanced per-step form validation
+- ✅ CSS Variables & Utility Classes (clean code refactor)
+- ✅ Step-by-step form wizard with progress bar
+- ✅ React Router (Landing Page + Builder Page)
+- ✅ Checking and fixing for small/minor bug and some error
+- ⬜ Deploy to Vercel
 
 ---
