@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { arrayMove } from "@dnd-kit/sortable";
 
 export function useCVData() {
   const [cvData, setCvData] = useState(() => {
@@ -78,6 +79,22 @@ export function useCVData() {
     setCvData({ ...cvData, experiences: updated });
   }
 
+  function handleDragEndExp(event) {
+    const { active, over } = event;
+
+    if (active.id !== over.id) {
+      const oldIndex = cvData.experiences.findIndex(
+        (exp) => exp.id === active.id,
+      );
+      const newIndex = cvData.experiences.findIndex(
+        (exp) => exp.id === over.id,
+      );
+
+      const newExperiences = arrayMove(cvData.experiences, oldIndex, newIndex);
+      setCvData({ ...cvData, experiences: newExperiences });
+    }
+  }
+
   function handleEduChange(index, e) {
     const updated = [...cvData.educations];
     updated[index][e.target.name] = e.target.value;
@@ -111,6 +128,20 @@ export function useCVData() {
     const updated = [...cvData.educations];
     [updated[index], updated[index + 1]] = [updated[index + 1], updated[index]];
     setCvData({ ...cvData, educations: updated });
+  }
+
+  function handleDragEndEdu(event) {
+    const { active, over } = event;
+
+    if (active.id !== over.id) {
+      const oldIndex = cvData.educations.findIndex(
+        (edu) => edu.id === active.id,
+      );
+      const newIndex = cvData.educations.findIndex((edu) => edu.id === over.id);
+
+      const newEducations = arrayMove(cvData.educations, oldIndex, newIndex);
+      setCvData({ ...cvData, educations: newEducations });
+    }
   }
 
   function resetAll() {
@@ -189,5 +220,7 @@ export function useCVData() {
     moveEducationUp,
     moveEducationDown,
     resetAll,
+    handleDragEndExp,
+    handleDragEndEdu,
   };
 }

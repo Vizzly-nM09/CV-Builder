@@ -48,6 +48,31 @@ header h1 {
   font-weight: bold;
 }
 
+/* === DRAG & DROP === */
+.drag-header {
+  background-color: #111a2f; /* Darker than card */
+  padding: 6px;
+  text-align: center;
+  font-size: 11px;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: grab;
+  user-select: none;
+  border-bottom: 1px solid #2a2a4a;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.drag-header:hover {
+  background-color: #162444;
+  color: var(--accent);
+}
+
+.drag-header:active {
+  cursor: grabbing;
+}
+
+
 /* === FORM SIDE === */
 .form-section {
   flex: 1;
@@ -199,6 +224,29 @@ hr {
   justify-content: space-between;
   align-items: center;
 }
+
+/* === DRAG & DROP === */
+.drag-handle {
+  position: absolute;
+  left: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  font-size: 20px;
+  cursor: grab;
+  padding: 10px;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.entry-block:hover .drag-handle {
+  opacity: 1; /* Only show grip icon on hover for a cleaner look */
+}
+
+.drag-handle:active {
+  cursor: grabbing;
+}
+
 .move-buttons {
   display: flex;
   gap: 4px;
@@ -226,8 +274,6 @@ hr {
   flex-direction: column;
   gap: 8px;
   padding: 12px;
-  border: 1px solid #2a2a4a;
-  border-radius: 8px;
   position: relative;
 }
 
