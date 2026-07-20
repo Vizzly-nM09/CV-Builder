@@ -8,6 +8,7 @@ function EducationForm() {
     removeEducation,
     moveEducationUp,
     moveEducationDown,
+    errors,
   } = useCVContext();
 
   return (
@@ -49,7 +50,12 @@ function EducationForm() {
             value={edu.school}
             onChange={(e) => handleEduChange(index, e)}
             placeholder="e.g. Universitas Internasional Batam"
+            className={errors.school && index === 0 ? "input-error" : ""}
           />
+          {errors.school && index === 0 && (
+            <span className="error-msg">{errors.school}</span>
+          )}
+
           <label>Degree</label>
           <input
             name="degree"
@@ -57,6 +63,7 @@ function EducationForm() {
             onChange={(e) => handleEduChange(index, e)}
             placeholder="e.g. S1 Informatika"
           />
+
           <label>Year</label>
           <input
             name="eduYear"

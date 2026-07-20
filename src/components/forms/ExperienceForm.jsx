@@ -8,6 +8,7 @@ function ExperienceForm() {
     addExperience,
     moveExperienceUp,
     moveExperienceDown,
+    errors,
   } = useCVContext();
 
   return (
@@ -50,7 +51,11 @@ function ExperienceForm() {
             value={exp.jobTitle}
             onChange={(e) => handleExpChange(index, e)}
             placeholder="e.g. Frontend Developer"
+            className={errors.jobTitle && index === 0 ? "input-error" : ""}
           />
+          {errors.jobTitle && index === 0 && (
+            <span className="error-msg">{errors.jobTitle}</span>
+          )}
 
           <label>Company</label>
           <input
@@ -58,7 +63,11 @@ function ExperienceForm() {
             value={exp.company}
             onChange={(e) => handleExpChange(index, e)}
             placeholder="e.g. UIB"
+            className={errors.company && index === 0 ? "input-error" : ""}
           />
+          {errors.company && index === 0 && (
+            <span className="error-msg">{errors.company}</span>
+          )}
 
           <label>Year</label>
           <input

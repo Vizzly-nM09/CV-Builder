@@ -11,7 +11,7 @@ import EducationForm from "./components/forms/EducationForm";
 import SkillsForm from "./components/forms/SkillsForm";
 
 function App() {
-  const { selectedTemplate, setSelectedTemplate, validate, resetAll } =
+  const { selectedTemplate, setSelectedTemplate, validateStep, resetAll } =
     useCVContext();
 
   const [step, setStep] = useState(1);
@@ -78,10 +78,9 @@ function App() {
               <button
                 className="btn wizard-btn wizard-btn-next"
                 onClick={() => {
-                  if (step === 1) {
-                    const isValid = validate();
-                    if (!isValid) return;
-                  }
+                  const isValid = validateStep(step);
+                  if (!isValid) return;
+
                   setStep(step + 1);
                 }}
               >
@@ -100,7 +99,7 @@ function App() {
             <span className="preview-label-text">TEMPLATE SELECTOR</span>
             <button
               onClick={() => {
-                const isValid = validate();
+                const isValid = validateStep(1);
                 if (isValid) window.print();
               }}
               className="btn download-btn"

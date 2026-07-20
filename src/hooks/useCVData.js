@@ -129,19 +129,45 @@ export function useCVData() {
     setErrors({});
   }
 
-  function validate() {
+  function validateStep(step) {
     const newErrors = {};
 
-    if (!cvData.name.trim()) newErrors.name = "Full name is required";
+    switch (step) {
+      case 1:
+        if (!cvData.name.trim()) newErrors.name = "Full name is required";
+        if (!cvData.email.trim()) newErrors.email = "Email is required";
+        else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cvData.email))
+          newErrors.email = "Email format is invalid";
+        if (!cvData.phone.trim()) newErrors.phone = "Phone number is required";
+        break;
 
-    if (!cvData.email.trim()) newErrors.email = "Email is required";
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cvData.email))
-      newErrors.email = "Email format is invalid";
+      case 2:
+        if (cvData.experiences.length > 0) {
+          if (!cvData.experiences[0].jobTitle.trim()) {
+            newErrors.jobTitle = "Job title is required for your first entry";
+          }
+          if (!cvData.experiences[0].company.trim()) {
+            newErrors.company = "Company is required for your first entry";
+          }
+        }
+        break;
 
-    if (!cvData.phone.trim()) newErrors.phone = "Phone number is required";
+      case 3:
+        if (cvData.educations.length > 0) {
+          if (!cvData.educations[0].school.trim()) {
+            newErrors.school = "School/University name is required";
+          }
+        }
+        break;
+
+      case 4:
+        break;
+
+      default:
+        break;
+    }
 
     setErrors(newErrors);
-
     return Object.keys(newErrors).length === 0;
   }
 
@@ -150,7 +176,7 @@ export function useCVData() {
     selectedTemplate,
     setSelectedTemplate,
     errors,
-    validate,
+    validateStep,
     handleChange,
     handleExpChange,
     addExperience,
