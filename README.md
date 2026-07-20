@@ -31,6 +31,15 @@ A simple web app where you can make your own CV, and download it as PDF document
 
 ---
 
+## 📋 Prerequisites
+
+Before running this project, ensure you have the following installed on your machine:
+- **Node.js** (v18 or higher)
+- **npm** (v9 or higher)
+- A modern web browser (Chrome, Firefox, Edge, Safari)
+
+---
+
 ## 🚀 Getting Started
 
 ```bash
