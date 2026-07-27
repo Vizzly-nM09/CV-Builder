@@ -117,6 +117,6 @@ This was my first React project, built from zero JavaScript knowledge. Here's ev
 - ✅ Step-by-step form wizard with progress bar
 - ✅ React Router (Landing Page + Builder Page)
 - ✅ Checking and fixing for small/minor bug and some error
-- ⬜ Deploy to Vercel
+- ⬜ Deploy to Vercel (Soon)
 
 ---
