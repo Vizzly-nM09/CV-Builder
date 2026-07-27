@@ -1,4 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
+import ThemePicker from "./ThemePicker";
 
 function Navbar() {
   const location = useLocation();
@@ -10,6 +11,7 @@ function Navbar() {
       </div>
 
       <div className="navbar-links">
+        <ThemePicker />
         <Link
           to="/"
           className={location.pathname === "/" ? "nav-link active" : "nav-link"}

@@ -5,21 +5,46 @@
   padding: 0;
 }
 
+/* === THEME VARIABLES (Default Dark Pink) === */
 :root {
-  --bg-main: #1a1a2e; /* Darkest background (body) */
-  --bg-card: #16213e; /* Lighter background (forms, navbar) */
-  --accent: #e94560; /* Pink accent color */
-  --accent-hover: #d13d56; /* Darker pink for hover states */
-  --text-main: #ffffff; /* Primary text */
-  --text-muted: #aaaaaa; /* Grey text */
+  --bg-main: #1a1a2e; /* App body background */
+  --bg-card: #16213e; /* Cards & form background */
+  --text-main: #ffffff; /* Main text & preview card background */
+  --text-muted: #a0a0b0; /* Secondary grey text */
+  --accent: #ff4785; /* Primary pink buttons & borders */
+  --accent-hover: #e03e75; /* Hover state */
+  --border-color: #2a2a4a; /* Borders */
 }
 
-/* === PAGE === */
+/* === THEME: LIGHT MODE (Cvmaker Green) === */
+[data-theme="light"] {
+  --bg-main: #f4f5fc; /* Light blue-grey background */
+  --bg-card: #ffffff; /* Clean white cards */
+  --text-main: #11121b; /* Dark charcoal text */
+  --text-muted: #707070; /* Grey text */
+  --accent: #2dc46a; /* Cvmaker green */
+  --accent-hover: #26a85a;
+  --border-color: #e3e3e3;
+}
+
+/* === THEME: DRACULA (Deep Purple) === */
+[data-theme="dracula"] {
+  --bg-main: #282a36;
+  --bg-card: #44475a;
+  --text-main: #f8f8f2;
+  --text-muted: #6272a4;
+  --accent: #bd93f9; /* Pastel purple */
+  --accent-hover: #a37acc;
+  --border-color: #6272a4;
+}
+
+/* === BASE BODY === */
 body {
-  font-family: "Segoe UI", sans-serif;
   background-color: var(--bg-main);
   color: var(--text-main);
-  padding: 20px;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 /* === HEADER === */
@@ -46,6 +71,12 @@ header h1 {
   transition: all 0.2s;
   border: none;
   font-weight: bold;
+  background-color: var(--accent);
+  color: #fff;
+}
+
+.btn:hover:not(:disabled) {
+  background-color: var(--accent-hover);
 }
 
 /* === DRAG & DROP === */
@@ -60,7 +91,9 @@ header h1 {
   cursor: grab;
   user-select: none;
   border-bottom: 1px solid #2a2a4a;
-  transition: background-color 0.2s, color 0.2s;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
 }
 
 .drag-header:hover {
@@ -72,7 +105,6 @@ header h1 {
   cursor: grabbing;
 }
 
-
 /* === FORM SIDE === */
 .form-section {
   flex: 1;
@@ -82,6 +114,11 @@ header h1 {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  border: 1px solid var(--border-color);
+  overflow-y: auto;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease;
 }
 
 .form-section h2 {
@@ -245,6 +282,31 @@ hr {
 
 .drag-handle:active {
   cursor: grabbing;
+}
+
+/* === THEME PICKER === */
+.theme-picker {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.theme-swatch {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.theme-swatch:hover {
+  transform: scale(1.2);
+}
+
+.theme-swatch.active {
+  border-color: #ffffff;
+  box-shadow: 0 0 0 2px var(--accent);
 }
 
 .move-buttons {

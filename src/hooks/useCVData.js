@@ -27,6 +27,16 @@ export function useCVData() {
 
   const [errors, setErrors] = useState({});
 
+  const [appTheme, setAppTheme] = useState("default");
+
+  useEffect(() => {
+    if (appTheme === "default") {
+      document.body.removeAttribute("data-theme");
+    } else {
+      document.body.setAttribute("data-theme", appTheme);
+    }
+  }, [appTheme]);
+
   useEffect(() => {
     localStorage.setItem("cvData", JSON.stringify(cvData));
   }, [cvData]);
@@ -222,5 +232,7 @@ export function useCVData() {
     resetAll,
     handleDragEndExp,
     handleDragEndEdu,
+    appTheme,
+    setAppTheme,
   };
 }
