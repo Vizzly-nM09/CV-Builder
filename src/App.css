@@ -404,7 +404,7 @@ hr {
   font-weight: bold;
   text-transform: uppercase;
   margin: 10px 0 5px 0;
-  border-bottom: 1px solid #cccccc;
+  border-bottom: 1px solid var(--cv-accent);
   padding-bottom: 3px;
 }
 
@@ -431,7 +431,7 @@ hr {
 }
 
 .modern-header {
-  background-color: var(--bg-main);
+  background-color: var(--cv-accent);
   color: var(--text-main);
   padding: 32px;
 }
@@ -469,10 +469,10 @@ hr {
   font-size: 10px;
   letter-spacing: 2.5px;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--cv-accent);
   margin: 0 0 12px 0;
   padding-bottom: 6px;
-  border-bottom: 2px solid var(--accent);
+  border-bottom: 2px solid var(--cv-accent);
   display: inline-block;
 }
 
@@ -500,7 +500,7 @@ hr {
 
 .modern-role {
   font-weight: 600;
-  color: var(--bg-main);
+  color: var(--cv-accent);
   font-size: 14px;
   margin: 0;
 }
@@ -528,7 +528,7 @@ hr {
 }
 
 .modern-skill-badge {
-  background-color: var(--bg-main);
+  background-color: var(--cv-accent);
   color: var(--text-main);
   padding: 5px 14px;
   border-radius: 99px;
@@ -550,7 +550,7 @@ hr {
 }
 
 .minimal-sidebar {
-  border-right: 2px solid #e0e0e0;
+  border-right: 2px solid var(--cv-accent);
   padding-right: 20px;
 }
 
@@ -569,7 +569,7 @@ hr {
   font-size: 12px;
   letter-spacing: 1px;
   text-transform: uppercase;
-  color: var(--bg-main);
+  color: var(--cv-accent);
   margin: 0 0 10px 0;
   font-weight: 600;
 }
@@ -578,10 +578,10 @@ hr {
   font-size: 14px;
   letter-spacing: 1px;
   text-transform: uppercase;
-  color: var(--bg-main);
+  color: var(--cv-accent);
   margin: 0 0 12px 0;
   font-weight: 600;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid var(--cv-accent);
   padding-bottom: 8px;
 }
 
@@ -787,6 +787,35 @@ input.input-error {
   font-size: 11px;
   color: var(--accent);
   margin-top: -4px;
+}
+
+/* === CV ACCENT COLOR PICKER === */
+.template-selector-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 32px;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.cv-color-picker {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.color-picker-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #666;
+}
+
+.color-swatches {
+  display: flex;
+  gap: 8px;
 }
 
 /* === WIZARD === */

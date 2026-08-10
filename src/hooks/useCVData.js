@@ -29,6 +29,12 @@ export function useCVData() {
 
   const [appTheme, setAppTheme] = useState("default");
 
+  const [cvAccentColor, setCvAccentColor] = useState("#2c3e6b");
+
+  useEffect(() => {
+    document.body.style.setProperty("--cv-accent", cvAccentColor);
+  }, [cvAccentColor]);
+
   useEffect(() => {
     if (appTheme === "default") {
       document.body.removeAttribute("data-theme");
@@ -234,5 +240,7 @@ export function useCVData() {
     handleDragEndEdu,
     appTheme,
     setAppTheme,
+    cvAccentColor,
+    setCvAccentColor,
   };
 }
