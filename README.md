@@ -18,14 +18,16 @@ A simple web app where you can make your own CV, and download it as PDF document
 
 ## 🛠️ Tech Stack
 
-| Category | Technology        | Purpose                                    |
+| Category | Technology | Purpose |
 | -------- | ----------------- | ------------------------------------------ |
-| Language | JavaScript (ES6+) | Core programming language                  |
-| Library  | React 19          | UI components & state management           |
-| Build    | Vite 8            | Dev server, hot reload & production bundle |
-| Styling  | Vanilla CSS       | Custom design with CSS Variables & Flexbox |
-| Tools    | VS Code, Git, npm | Code editor, version control & packages    |
-| Storage  | localStorage      | Client-side data persistence               |
+| Language | JavaScript (ES6+) | Core programming language |
+| Library | React 19 | UI components & state management |
+| Routing | React Router 7 | Client-side Single Page Application routing |
+| Animation| Framer Motion | Smooth page & UI transition animations |
+| Build | Vite 8 | Dev server, hot reload & production bundle |
+| Styling | Vanilla CSS | Dynamic themes & custom design tokens |
+| Tools | VS Code, Git, npm | Code editor, version control & packages |
+| Storage | localStorage | Client-side data persistence |
 
 > **Note:** This is a pure frontend project. No backend or database.
 
@@ -75,7 +77,7 @@ This was my first React project, built from zero JavaScript knowledge. Here's ev
 ### React Hooks
 
 - **`useState`** — Storing and updating reactive state
-- **`useEffect`** — Running side effects (localStorage sync)
+- **`useEffect`** — Running side effects (localStorage sync, DOM attribute/style mutations)
 - **`useContext`** — Accessing global state without prop drilling
 - **`useMemo`** — Caching expensive computations (skills splitting)
 - **`useReducer`** — Centralized state management with actions and a reducer function
@@ -88,11 +90,12 @@ This was my first React project, built from zero JavaScript knowledge. Here's ev
 - **Component Extraction** — Refactoring a monolithic file into focused components
 - **Immutability** — Never mutating state directly; always copying with spread `...`
 - **`React.memo`** — Preventing unnecessary re-renders for prop-based components
+- **Framer Motion Animations** — `<AnimatePresence>` and `<motion.div>` for smooth route transitions
 
 ### CSS
 
-- **Flexbox & Grid** — Building responsive two-column layouts
-- **CSS Variables** — Defining design tokens in `:root` for easy theming
+- **Flexbox & Grid** — Building responsive two-column layouts and auto-fitting grids
+- **CSS Variables & Themes** — Design tokens in `:root` and `[data-theme]` for instant theme switching
 - **Utility Classes** — DRY principle with shared `.btn` base class
 - **`@media print`** — Custom print stylesheet for PDF downloads
 
@@ -116,6 +119,10 @@ This was my first React project, built from zero JavaScript knowledge. Here's ev
 - ✅ CSS Variables & Utility Classes (clean code refactor)
 - ✅ Step-by-step form wizard with progress bar
 - ✅ React Router (Landing Page + Builder Page)
+- ✅ Dynamic App Interface Themes (Dark Pink, Light Green, Dracula)
+- ✅ Printed CV Template Accent Color Picker
+- ✅ cvmaker-inspired Landing Page Redesign
+- ✅ Page Transition Animations (framer-motion)
 - ✅ Checking and fixing for small/minor bug and some error
 - ⬜ Deploy to Vercel (Soon)
 
