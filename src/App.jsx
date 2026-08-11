@@ -9,7 +9,6 @@ import PersonalInfoForm from "./components/forms/PersonalInfoForm";
 import ExperienceForm from "./components/forms/ExperienceForm";
 import EducationForm from "./components/forms/EducationForm";
 import SkillsForm from "./components/forms/SkillsForm";
-import { motion, AnimatePresence } from "framer-motion";
 
 function App() {
   const { selectedTemplate, setSelectedTemplate, validateStep, resetAll } =
@@ -32,44 +31,17 @@ function App() {
   }
 
   function renderStep() {
-    const stepAnimation = {
-      initial: { opacity: 0, x: 20 },
-      animate: { opacity: 1, x: 0 },
-      exit: { opacity: 0, x: -20 },
-      transition: { duration: 0.25 },
-    };
-
     switch (step) {
       case 1:
-        return (
-          <motion.div key={1} {...stepAnimation}>
-            <PersonalInfoForm />
-          </motion.div>
-        );
+        return <PersonalInfoForm />;
       case 2:
-        return (
-          <motion.div key={2} {...stepAnimation}>
-            <ExperienceForm />
-          </motion.div>
-        );
+        return <ExperienceForm />;
       case 3:
-        return (
-          <motion.div key={3} {...stepAnimation}>
-            <EducationForm />
-          </motion.div>
-        );
+        return <EducationForm />;
       case 4:
-        return (
-          <motion.div key={4} {...stepAnimation}>
-            <SkillsForm />
-          </motion.div>
-        );
+        return <SkillsForm />;
       default:
-        return (
-          <motion.div key={1} {...stepAnimation}>
-            <PersonalInfoForm />
-          </motion.div>
-        );
+        return <PersonalInfoForm />;
     }
   }
 
@@ -91,7 +63,7 @@ function App() {
             </div>
           </div>
           {/* Active Form */}
-          <AnimatePresence mode="wait">{renderStep()}</AnimatePresence>
+          {renderStep()}
           {/* Navigation Buttons */}
           <div className="wizard-nav">
             {step > 1 && (
