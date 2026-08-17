@@ -19,7 +19,7 @@ function TemplateMinimal({}) {
             <h1>{cvData.name}</h1>
           </div>
 
-          <div className="minimkal-section">
+          <div className="minimal-section">
             <h3>Contact</h3>
             {cvData.email && <p>{cvData.email}</p>}
             {cvData.phone && <p>{cvData.phone}</p>}

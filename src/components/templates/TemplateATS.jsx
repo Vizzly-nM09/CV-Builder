@@ -5,7 +5,7 @@ function TemplateATS({}) {
 
   return (
     <div className="cv-ats">
-      <div className="cv-header">
+      <div className="ats-header">
         <h1>{cvData.name}</h1>
         <p>
           {cvData.email} | {cvData.phone}
