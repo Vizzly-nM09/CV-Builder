@@ -1,6 +1,8 @@
-# 📄 QuickCV
+# 📄 QuickCV — Modern Professional CV Builder
 
-A simple web app where you can make your own CV, and download it as PDF document. Built with React + Vite.
+> A fast, interactive, and customizable CV Builder web application built with React, Vite, and Framer Motion.
+>
+> 🌐 **Live Demo:** [https://quick-cv-six.vercel.app/](https://quick-cv-six.vercel.app/)
 
 ![QuickCV Preview](./src/assets/hero.png)
 
@@ -124,6 +126,6 @@ This was my first React project, built from zero JavaScript knowledge. Here's ev
 - ✅ cvmaker-inspired Landing Page Redesign
 - ✅ Page Transition Animations (framer-motion)
 - ✅ Checking and fixing for small/minor bug and some error
-- ⬜ Deploy to Vercel (Soon)
+- ✅ Deploy Live to Vercel
 
 ---
