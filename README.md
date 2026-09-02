@@ -4,7 +4,6 @@
 >
 > 🌐 **Live Demo:** [https://quick-cv-six.vercel.app/](https://quick-cv-six.vercel.app/)
 
-![QuickCV Preview](./src/assets/hero.png)
 
 ---
 
