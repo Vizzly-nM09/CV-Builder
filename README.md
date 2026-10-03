@@ -1,10 +1,7 @@
-# 📄 QuickCV — Modern Professional CV Builder
+# 📄 QuickCV, A Modern Professional CV Builder
 
 > A fast, interactive, and customizable CV Builder web application built with React, Vite, and Framer Motion.
 >
-> 🌐 **Live Demo:** [https://quick-cv-six.vercel.app/](https://quick-cv-six.vercel.app/)
-
-![QuickCV Preview](./src/assets/hero.png)
 
 ---
 
