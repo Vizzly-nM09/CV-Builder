@@ -7,9 +7,6 @@ function LandingPage() {
   return (
     <div className="landing-container">
       <header className="hero-section">
-        <div className="hero-badge">
-          ✦ Professional CV Builder — Fast & 100% Free
-        </div>
         <h1 className="hero-title">
           Buat CV Professional Anda <br />{" "}
           <span className="hero-highlight">Dalam Hitungan Menit</span>

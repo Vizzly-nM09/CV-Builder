@@ -1,5 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import ThemePicker from "./ThemePicker";
+import { FileText } from "lucide-react";
 
 function Navbar() {
   const location = useLocation();
@@ -7,7 +8,10 @@ function Navbar() {
   return (
     <nav className="navbar">
       <div className="navbar-brand">
-        <Link to="/">📄 QuickCV</Link>
+        <Link to="/" className="brand-logo">
+          <FileText size={20} className="brand-icon" />
+          <span>QuickCV</span>
+        </Link>
       </div>
 
       <div className="navbar-links">

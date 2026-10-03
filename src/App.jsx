@@ -10,6 +10,7 @@ import ExperienceForm from "./components/forms/ExperienceForm";
 import EducationForm from "./components/forms/EducationForm";
 import SkillsForm from "./components/forms/SkillsForm";
 import { motion, AnimatePresence } from "framer-motion";
+import { ArrowLeft, ArrowRight, RotateCcw, Download } from "lucide-react";
 
 function App() {
   const { selectedTemplate, setSelectedTemplate, validateStep, resetAll } =
@@ -99,7 +100,7 @@ function App() {
                 className="btn wizard-btn"
                 onClick={() => setStep(step - 1)}
               >
-                ← Back
+                <ArrowLeft size={16} /> Back
               </button>
             )}
             {step < stepLabels.length ? (
@@ -108,15 +109,14 @@ function App() {
                 onClick={() => {
                   const isValid = validateStep(step);
                   if (!isValid) return;
-
                   setStep(step + 1);
                 }}
               >
-                Next →
+                Next <ArrowRight size={16} />
               </button>
             ) : (
               <button className="btn clear-btn" onClick={resetAll}>
-                Clear All & Reset
+                <RotateCcw size={15} /> Clear All & Reset
               </button>
             )}
           </div>
@@ -132,7 +132,7 @@ function App() {
               }}
               className="btn download-btn"
             >
-              Download PDF
+              <Download size={16} /> Download PDF
             </button>
           </div>
 

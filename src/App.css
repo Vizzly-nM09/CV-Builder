@@ -47,6 +47,20 @@ body {
     color 0.3s ease;
 }
 
+body::before {
+  content: "";
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
 /* === HEADER === */
 header h1 {
   text-align: center;
@@ -94,6 +108,10 @@ header h1 {
   transition:
     background-color 0.2s,
     color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
 }
 
 .drag-header:hover {
@@ -145,7 +163,10 @@ textarea {
   color: var(--text-main);
   font-size: 14px;
   outline: none;
-  transition: border-color 0.2s, background-color 0.3s ease, color 0.3s ease;
+  transition:
+    border-color 0.2s,
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 input:not([type="radio"])::placeholder,
@@ -180,7 +201,9 @@ hr {
   border: 1px solid var(--border-color);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   min-height: 600px;
-  transition: background-color 0.3s ease, border-color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease;
 }
 
 /* === EXPORT CONTROLS === */
@@ -220,6 +243,11 @@ hr {
   color: #111111;
   padding: 24px;
   min-height: 700px;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 20px 40px -15px rgba(0, 0, 0, 0.3),
+    0 0 25px -5px var(--accent-glow, rgba(44, 62, 107, 0.15));
+  transition: box-shadow 0.3s ease;
 }
 
 /* === BUTTONS === */
@@ -247,6 +275,10 @@ hr {
   background: transparent;
   color: var(--accent);
   font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 
 .add-btn:hover {
@@ -262,6 +294,10 @@ hr {
   background: transparent;
   color: #aaaaaa;
   font-size: 11px;
+  gap: 5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .remove-btn:hover {
@@ -333,6 +369,9 @@ hr {
   background: transparent;
   color: #aaaaaa;
   font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 .move-btn:hover:not(:disabled) {
   border-color: var(--accent);
@@ -1044,6 +1083,17 @@ hr {
   font-weight: 500;
   background-color: var(--bg-main);
 }
+.brand-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px; /* Jarak antara icon dan teks */
+  text-decoration: none;
+  color: inherit;
+}
+
+.brand-icon {
+  color: var(--accent); /* Memberikan warna aksen tema pada icon logo */
+}
 
 /* === FORM VALIDATION === */
 input.input-error {
@@ -1148,47 +1198,58 @@ input.input-error {
   background-color: var(--accent-hover);
 }
 
+.wizard-btn,
+.clear-btn,
+.download-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
 @media print {
   * {
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
-  } /* === PERFECT A4 PRINT MEDIA QUERY === */
-  @media print {
-    body {
-      background: none !important;
-      color: #000000 !important;
-    }
+  }
+  body::before {
+    display: none !important;
+  }
+  body {
+    background: none !important;
+    color: #000000 !important;
+  }
 
-    .navbar,
-    .form-section,
-    .preview-controls,
-    .template-selector-wrapper,
-    .landing-container {
-      display: none !important;
-    }
+  .navbar,
+  .form-section,
+  .preview-controls,
+  .template-selector-wrapper,
+  .landing-container {
+    display: none !important;
+  }
 
-    .builder-layout,
-    .preview-section {
-      display: block !important;
-      width: 100% !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      box-shadow: none !important;
-      border: none !important;
-    }
+  .builder-layout,
+  .preview-section {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
 
-    .cv-document {
-      width: 100% !important;
-      margin: 0 !important;
-      padding: 0 !important;
-    }
+  .cv-document {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+  }
 
-    .cv-ats,
-    .cv-modern,
-    .cv-minimal {
-      box-shadow: none !important;
-      border-radius: 0 !important;
-      page-break-inside: avoid;
-    }
+  .cv-ats,
+  .cv-modern,
+  .cv-minimal {
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    page-break-inside: avoid;
   }
 }
