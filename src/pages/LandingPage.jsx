@@ -1,5 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import "../App.css";
+import {
+  FileEdit,
+  LayoutTemplate,
+  Download,
+  Eye,
+  CheckCircle2,
+  GripVertical,
+  Save,
+  ArrowRight,
+} from "lucide-react";
 
 function LandingPage() {
   const navigate = useNavigate();
@@ -17,8 +27,9 @@ function LandingPage() {
           secara gratis tanpa perlu mendaftar.
         </p>
         <button className="hero-cta-btn" onClick={() => navigate("/builder")}>
-          Build My CV Now →
+          Build My CV Now <ArrowRight size={18} />
         </button>
+
         {/* Floating Hero Preview Card */}
         <div className="hero-preview-card">
           <div className="preview-card-header">
@@ -40,7 +51,9 @@ function LandingPage() {
         <h2 className="section-title">3 Langkah Mudah Membuat CV</h2>
         <div className="steps-grid">
           <div className="step-card">
-            <div className="step-icon">📝</div>
+            <div className="step-icon">
+              <FileEdit size={28} />
+            </div>
             <span className="step-number">Langkah 1</span>
             <h3>Isi Informasi</h3>
             <p>
@@ -48,8 +61,11 @@ function LandingPage() {
               keahlian Anda.
             </p>
           </div>
+
           <div className="step-card">
-            <div className="step-icon">🎨</div>
+            <div className="step-icon">
+              <LayoutTemplate size={28} />
+            </div>
             <span className="step-number">Langkah 2</span>
             <h3>Pilih Template</h3>
             <p>
@@ -57,8 +73,11 @@ function LandingPage() {
               bidang pekerjaan Anda.
             </p>
           </div>
+
           <div className="step-card">
-            <div className="step-icon">📄</div>
+            <div className="step-icon">
+              <Download size={28} />
+            </div>
             <span className="step-number">Langkah 3</span>
             <h3>Unduh PDF</h3>
             <p>
@@ -73,31 +92,42 @@ function LandingPage() {
         <h2 className="section-title">Fitur Unggulan</h2>
         <div className="features-grid">
           <div className="feature-card">
-            <div className="feature-icon">⚡</div>
+            <div className="feature-icon">
+              <Eye size={26} />
+            </div>
             <h3>Live Real-Time Preview</h3>
             <p>
               Lihat setiap perubahan data yang Anda ketik secara langsung pada
               dokumen CV.
             </p>
           </div>
+
           <div className="feature-card">
-            <div className="feature-icon">🎯</div>
+            <div className="feature-icon">
+              <CheckCircle2 size={26} />
+            </div>
             <h3>ATS-Friendly Formats</h3>
             <p>
               Format templat dirancang agar mudah dibaca oleh sistem penyeleksi
               CV (ATS).
             </p>
           </div>
+
           <div className="feature-card">
-            <div className="feature-icon">🖱️</div>
+            <div className="feature-icon">
+              <GripVertical size={26} />
+            </div>
             <h3>Drag & Drop Reorder</h3>
             <p>
               Ubah urutan pengalaman dan pendidikan dengan mudah hanya dengan
               menggeser kotak.
             </p>
           </div>
+
           <div className="feature-card">
-            <div className="feature-icon">💾</div>
+            <div className="feature-icon">
+              <Save size={26} />
+            </div>
             <h3>Auto-Save Lokal</h3>
             <p>
               Data Anda tersimpan secara otomatis di peramban sehingga aman dari
@@ -114,7 +144,7 @@ function LandingPage() {
           menit.
         </p>
         <button className="hero-cta-btn" onClick={() => navigate("/builder")}>
-          Mulai Buat CV Sekarang →
+          Mulai Buat CV Sekarang <ArrowRight size={18} />
         </button>
       </section>
     </div>
