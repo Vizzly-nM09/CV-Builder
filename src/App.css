@@ -5,37 +5,15 @@
   padding: 0;
 }
 
-/* === THEME VARIABLES (Default Dark Pink) === */
 :root {
-  --bg-main: #1a1a2e; /* App body background */
-  --bg-card: #16213e; /* Cards & form background */
-  --text-main: #ffffff; /* Main text & preview card background */
-  --text-muted: #a0a0b0; /* Secondary grey text */
-  --accent: #ff4785; /* Primary pink buttons & borders */
-  --accent-hover: #e03e75; /* Hover state */
-  --border-color: #2a2a4a; /* Borders */
-}
-
-/* === THEME: LIGHT MODE (Cvmaker Green) === */
-[data-theme="light"] {
-  --bg-main: #f4f5fc; /* Light blue-grey background */
-  --bg-card: #ffffff; /* Clean white cards */
-  --text-main: #11121b; /* Dark charcoal text */
-  --text-muted: #707070; /* Grey text */
-  --accent: #2dc46a; /* Cvmaker green */
-  --accent-hover: #26a85a;
-  --border-color: #e3e3e3;
-}
-
-/* === THEME: DRACULA (Deep Purple) === */
-[data-theme="dracula"] {
-  --bg-main: #1e1f29;
-  --bg-card: #282a36;
-  --text-main: #f8f8f2;
-  --text-muted: #c5c8e6;
-  --accent: #bd93f9;
-  --accent-hover: #a37acc;
-  --border-color: #44475a;
+  --bg-main: #f4f4f5; /* Background halaman: Zinc lembut, teduh di mata */
+  --bg-card: #fafafa; /* Card & kotak form: Studio Zinc (Opsi 3, anti-silau) */
+  --text-main: #18181b; /* Teks utama: Charcoal pekat yang sangat tajam & jelas */
+  --text-muted: #71717a; /* Teks sekunder/label: Abu-abu natural */
+  --accent: #2dc46a; /* Aksen Brand: Light Green segar */
+  --accent-hover: #26a85a; /* Hover tombol */
+  --accent-glow: rgba(45, 196, 106, 0.2); /* Pendaran hijau lembut */
+  --border-color: #e4e4e7; /* Garis border tipis rapi (Zinc 200) */
 }
 
 /* === BASE BODY === */
@@ -95,16 +73,16 @@ header h1 {
 
 /* === DRAG & DROP === */
 .drag-header {
-  background-color: #111a2f; /* Darker than card */
+  background-color: var(--bg-main);
   padding: 6px;
   text-align: center;
   font-size: 11px;
-  color: #666;
+  color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 1px;
   cursor: grab;
   user-select: none;
-  border-bottom: 1px solid #2a2a4a;
+  border-bottom: 1px solid var(--border-color);
   transition:
     background-color 0.2s,
     color 0.2s;
@@ -239,7 +217,7 @@ hr {
 }
 
 .cv-document {
-  background-color: #ffffff;
+  background-color: #fafafa;
   color: #111111;
   padding: 24px;
   min-height: 700px;
@@ -251,6 +229,7 @@ hr {
   overflow-wrap: break-word;
   word-break: break-word;
   min-width: 0;
+  border: 1px solid #e4e4e7;
 }
 
 /* === BUTTONS === */
@@ -1090,19 +1069,19 @@ hr {
 }
 .nav-link {
   font-size: 14px;
-  color: #aaaaaa;
+  color: var(--text-muted);
   text-decoration: none;
   padding: 6px 12px;
   border-radius: 6px;
   transition: all 0.2s;
 }
 .nav-link:hover {
-  color: var(--text-main);
+  color: var(--accent);
   background-color: #0f3460;
 }
 .nav-link.active {
   color: var(--accent);
-  font-weight: 500;
+  font-weight: 600;
   background-color: var(--bg-main);
 }
 .brand-logo {
@@ -1272,6 +1251,7 @@ input.input-error {
     margin: 0 !important;
     padding: 0 !important;
     box-shadow: none !important;
+    background: #ffffff !important;
   }
 
   .cv-ats,

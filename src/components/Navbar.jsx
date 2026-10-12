@@ -1,5 +1,4 @@
 import { Link, useLocation } from "react-router-dom";
-import ThemePicker from "./ThemePicker";
 import { FileText } from "lucide-react";
 
 function Navbar() {
@@ -15,7 +14,6 @@ function Navbar() {
       </div>
 
       <div className="navbar-links">
-        <ThemePicker />
         <Link
           to="/"
           className={location.pathname === "/" ? "nav-link active" : "nav-link"}
